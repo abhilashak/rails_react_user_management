@@ -1,6 +1,7 @@
 // frontend/src/App.jsx
 
 import { useEffect, useState } from "react";
+import UserForm from "./components/userForm";
 
 function App() {
   const [users, setUsers] = useState([]);
@@ -23,6 +24,8 @@ function App() {
           </div>)
         })
       }
+
+      <UserForm />
     </div>
   )
 }
