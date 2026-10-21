@@ -317,4 +317,4 @@ This project is intended for hands-on practice with:
 
 ## License
 
-Add a license file if you intend to distribute this project publicly.
+<Add a license file>
