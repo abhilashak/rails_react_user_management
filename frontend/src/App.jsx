@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import UserForm from "./components/userForm";
 import UserList from "./components/userList";
+import { userApi } from "./api/users"
 
 function App() {
   const [users, setUsers] = useState([]);
@@ -13,6 +14,20 @@ function App() {
         .then(data => setUsers(data))
     }, []
   );
+
+  async function handleSave(attrs) {
+    console.log(attrs.name);
+    console.log(attrs.email);
+
+    try {
+      const savedUser = await userApi.create(attrs);
+      setUsers([...users, savedUser])
+
+      return true;
+    } catch (error) {
+      console.log(error);
+    } finally {}
+  }
 
   return (
     <main className="page">
@@ -26,7 +41,7 @@ function App() {
       </header>
 
       <section className="card">
-        <UserForm />
+        <UserForm handleSave={handleSave} />
       </section>
 
       <section className="card">

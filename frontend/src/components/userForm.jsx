@@ -1,12 +1,19 @@
 import { useState } from "react";
 
-
-function UserForm() {
+function UserForm(props) {
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
 
+  const clearValues = () => {
+    setName("");
+    setEmail("");
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    let req = props.handleSave({name: name, email: email});
+    if (req)
+      clearValues()
   };
 
   return (
