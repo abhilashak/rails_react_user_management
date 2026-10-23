@@ -7,6 +7,7 @@ import { userApi } from "./api/users"
 
 function App() {
   const [users, setUsers] = useState([]);
+  const [editUser, setEditUser] = useState(null);
 
   useEffect(() =>{
       fetch("/api/users")
@@ -20,8 +21,13 @@ function App() {
     console.log(attrs.email);
 
     try {
-      const savedUser = await userApi.create(attrs);
-      setUsers([...users, savedUser])
+      // Edit form
+      if (attrs.id) {
+        console.log("edit....");
+      } else { // Create form
+        const savedUser = await userApi.create(attrs);
+        setUsers([...users, savedUser])
+      }
 
       return true;
     } catch (error) {
@@ -44,6 +50,10 @@ function App() {
     } finally {}
   }
 
+  function handleEdit(user) {
+    setEditUser(user);
+  }
+
   return (
     <main className="page">
       <header className="page-header">
@@ -56,11 +66,11 @@ function App() {
       </header>
 
       <section className="card">
-        <UserForm handleSave={handleSave} />
+        <UserForm handleSave={handleSave} editUser={editUser} />
       </section>
 
       <section className="card">
-        <UserList users={users} handleDelete={handleDelete} />
+        <UserList users={users} handleDelete={handleDelete} handleEdit={handleEdit} />
       </section>
     </main>
   )
