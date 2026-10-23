@@ -29,6 +29,21 @@ function App() {
     } finally {}
   }
 
+  async function handleDelete(id) {
+    console.log(id);
+
+    try {
+      await userApi.delete(id);
+      setUsers(
+        users.filter((user) => user.id !== id)
+      );
+
+      return true;
+    } catch (error) {
+      console.log(error);
+    } finally {}
+  }
+
   return (
     <main className="page">
       <header className="page-header">
@@ -45,7 +60,7 @@ function App() {
       </section>
 
       <section className="card">
-        <UserList users={users} />
+        <UserList users={users} handleDelete={handleDelete} />
       </section>
     </main>
   )

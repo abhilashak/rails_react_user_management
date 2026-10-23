@@ -19,7 +19,7 @@ function UserList(props) {
 
                 <div className="actions">
                   <button type="button"> Edit </button>
-                  <button type="button" className="danger"> Delete </button>
+                  <button type="button" className="danger" onClick={() => props.handleDelete(user.id)}> Delete </button>
                 </div>
               </div>
             )

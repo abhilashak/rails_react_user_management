@@ -41,5 +41,5 @@ export const userApi = {
     body: JSON.stringify({user})
   }),
 
-  remove: (id) => request(`${USERS_URL}/${id}`, { method: "DELETE" })
+  delete: (id) => request(`${USERS_URL}/${id}`, { method: "DELETE" })
 };
