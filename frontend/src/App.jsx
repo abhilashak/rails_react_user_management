@@ -17,15 +17,21 @@ function App() {
   );
 
   async function handleSave(attrs) {
-    console.log(attrs.name);
-    console.log(attrs.email);
+    // console.log(attrs.name);
+    // console.log(attrs.email);
 
     try {
       // Edit form
       if (attrs.id) {
-        console.log("edit....");
+        // console.log("editing....");
+        var savedUser = await userApi.update(attrs, attrs.id);
+        const updatedUsers = users.map((user) => {
+          return (user.id === savedUser.id ? savedUser : user)
+        });
+        setUsers(updatedUsers);
+        setEditUser(null);
       } else { // Create form
-        const savedUser = await userApi.create(attrs);
+        var savedUser = await userApi.create(attrs);
         setUsers([...users, savedUser])
       }
 

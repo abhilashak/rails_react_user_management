@@ -36,7 +36,7 @@ export const userApi = {
     body: JSON.stringify({user})
   }),
   
-  update: (id) => request(`${USERS_URL}/${id}`, {
+  update: (user, id) => request(`${USERS_URL}/${id}`, {
     method: "PATCH",
     body: JSON.stringify({user})
   }),
