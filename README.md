@@ -226,6 +226,9 @@ Vite prints the local frontend URL, usually `http://localhost:5173`.
 
 Open the Vite URL in your browser.
 
+<img width="1232" height="635" alt="user-mangmnt-ui" src="https://github.com/user-attachments/assets/f64dd7b7-d494-4b4d-b697-00c1d9cf59bd" />
+
+
 ## API endpoints
 
 | Method | Endpoint | Purpose |
