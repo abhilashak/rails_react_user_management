@@ -8,6 +8,7 @@ import { userApi } from "./api/users"
 function App() {
   const [users, setUsers] = useState([]);
   const [editUser, setEditUser] = useState(null);
+  const [saving, setSaving] = useState(false);
 
   useEffect(() =>{
       fetch("/api/users")
@@ -17,8 +18,7 @@ function App() {
   );
 
   async function handleSave(attrs) {
-    // console.log(attrs.name);
-    // console.log(attrs.email);
+    setSaving(true);
 
     try {
       // Edit form
@@ -38,22 +38,26 @@ function App() {
       return true;
     } catch (error) {
       console.log(error);
-    } finally {}
+    } finally {
+      setSaving(false);
+    }
   }
 
   async function handleDelete(id) {
-    console.log(id);
+    if(window.confirm("Are you sure?")) {
+      try {
+        await userApi.delete(id);
+        setUsers(
+          users.filter((user) => user.id !== id)
+        );
 
-    try {
-      await userApi.delete(id);
-      setUsers(
-        users.filter((user) => user.id !== id)
-      );
-
-      return true;
-    } catch (error) {
-      console.log(error);
-    } finally {}
+        return true;
+      } catch (error) {
+        console.log(error);
+      } finally {}
+    } else {
+      return null;
+    }
   }
 
   function handleEdit(user) {
@@ -92,7 +96,7 @@ function App() {
           </p>
 
           <div className="mt-6">
-            <UserForm handleSave={handleSave} editUser={editUser} />
+            <UserForm handleSave={handleSave} editUser={editUser} saving={saving} />
           </div>
         </section>
 

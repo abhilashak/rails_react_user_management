@@ -58,7 +58,7 @@ function UserForm(props) {
 
       <div className="flex flex-wrap gap-3 pt-2">
         <button type="submit" className="rounded-lg bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-indigo-700 disabled:cursor-not-allowed disabled:opacity-50">
-          {props.editUser ? "Update" : "Create"}
+          {props.saving ? "Saving..." : props.editUser ? "Update" : "Create"}
         </button>
       </div>
     </form> 

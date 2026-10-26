@@ -32,7 +32,7 @@ function UserList(props) {
                 </div>
 
                 <div className="flex shrink-0 gap-2">
-                  <button type="button" onClick={() => props.handleEdit(user)}className="rounded-lg border border-slate-300 px-3 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-50">
+                  <button type="button" onClick={() => props.handleEdit(user)} className="rounded-lg border border-slate-300 px-3 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-50">
                     Edit
                   </button>
                   <button type="button" onClick={() => props.handleDelete(user.id)} className="rounded-lg border border-red-200 px-3 py-2 text-sm font-medium text-red-600 transition hover:bg-red-50">
